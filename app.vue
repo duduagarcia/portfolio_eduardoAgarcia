@@ -1,6 +1,7 @@
 <script setup lang="ts">
 onMounted(() => {
   useSmoothScroll()
+  useConsoleName()
 })
 </script>
 
