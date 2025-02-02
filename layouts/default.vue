@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!-- <header>my dick</header> -->
+        <app-header/>
         <slot/>
-        <!-- <footer>my ass</footer> -->
+        <app-footer/>
     </div>
 </template>
