@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
-  modules: ['@hypernym/nuxt-gsap'],
+  modules: ['@hypernym/nuxt-gsap', '@vueuse/nuxt'],
   gsap: {
     extraPlugins: {
       scrollTrigger: true
@@ -15,8 +15,8 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
       link: [
         {
-          rel: "stylesheet",
-          href: "https://api.fontshare.com/v2/css?f[]=satoshi@400,401,500,501,700&display=swap"
+          rel: 'stylesheet',
+          href: 'https://api.fontshare.com/v2/css?f[]=satoshi@400,401,500,501,700&display=swap'
         }
       ]
     }

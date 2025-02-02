@@ -116,6 +116,7 @@ body {
     font-size: var(--size-font);
     line-height: 1;
     font-weight: 500;
+    background-color: var(--brand_bg_gray);
 }
   
 h1 {
@@ -176,7 +177,7 @@ p {
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
 }
   
 .container.is--full {
@@ -185,9 +186,19 @@ p {
   
 .container.is--medium {
     max-width: calc(var(--size-container) * .85);
-    background-color: royalblue;
+    padding-left: 0;
+    padding-right: 0;
+    /* background-color: royalblue; */
+}
+
+@media screen and (max-width: 991px) {
+    .container.is--medium {
+        padding-left: var(--container-padding);
+        padding-right: var(--container-padding);
+        max-width: 100%;
+    }
 }
   
-.container.small {
+/* .container.small {
     max-width: calc(var(--size-container) * 0.7);
-}
+} */
