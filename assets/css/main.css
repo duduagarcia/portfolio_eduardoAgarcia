@@ -1,7 +1,129 @@
-*{
-    color: red;
+/* ------------------------- Reset -------------------------------------------------- */
+*,
+*::after,
+*::before {
+  padding: 0px;
+  margin: 0px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-body{
-    height: 400vh;
+html {
+    scroll-behavior: initial;
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* link tag owns the color of it's father element */
+a {
+    color: inherit;
+}
+
+/* ------------------------- Hide Scrollbar -------------------------------------------------- */
+/* Hide scrollbar for Chrome, Safari and Opera */
+/* IE & Edge */
+/* Firefox */
+/* body ::-webkit-scrollbar,
+body::-webkit-scrollbar {display: none;}
+body {-ms-overflow-style: none;}
+html {scrollbar-width: none;} */
+
+
+/* ------------------------- colors and other stuff ---------------------------------------- */
+:root {
+    --brand_white: #FFFFFF;
+    --brand_light_gray: #D3D4D7;
+    --brand_dark_gray: #636468;
+    --brand_bg_gray: #F0F1FA;
+    --brand_black: #0F0F0F;
+    --brand_black_semi: #141517;
+    --brand_black_hover: #28292D;
+    --brand_green: #0ED285;
+  
+    --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  
+    --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
+    --duration-default: 0.735s;
+    --animation-default: var(--duration-default) var(--cubic-default);
+
+    --gap: 2em;
+    --section-padding: calc(3.5em + (var(--gap) * 2));
+    --container-padding: 2em;
+    --header-height: calc(1.5em + (var(--gap) * 2));
+    --footer-height: calc(2.785em + (var(--gap) * 2));
+}
+
+
+/* ------------------------- text selection ---------------------------------------- */
+::selection {
+    background-color: var(--brand_black_hover);
+    color: var(--brand_white);
+    text-shadow: none;
+}
+
+::-moz-selection {
+    background-color: var(--brand_black_hover);
+    color: var(--brand_white);
+    text-shadow: none;
+}
+
+body {
+    font-family: "Satoshi", "PP Neue Montreal", Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: var(--size-font);
+    line-height: 1;
+    font-weight: 500;
+}
+  
+h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 7.5em;
+    font-weight: 500;
+    line-height: 1;
+}
+  
+h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 5em;
+    font-weight: 500;
+    line-height: 1.05;
+}
+  
+h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2.5em;
+    font-weight: 500;
+    line-height: 1.1;
+}
+  
+h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.75em;
+    font-weight: 500;
+    line-height: 1.15;
+}
+  
+h5 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.25em;
+    font-weight: 500;
+    line-height: 1.2;
+}
+  
+p {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.4;
+    font-weight: 500;
 }
