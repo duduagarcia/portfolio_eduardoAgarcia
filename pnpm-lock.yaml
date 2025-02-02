@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@hypernym/nuxt-gsap':
+        specifier: ^2.4.3
+        version: 2.4.3
       lenis:
         specifier: ^1.1.20
         version: 1.1.20(vue@3.5.13(typescript@5.7.3))
@@ -323,6 +326,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@hypernym/nuxt-gsap@2.4.3':
+    resolution: {integrity: sha512-l3m7Z6NHWqPtz5Q7o18WKW1vOu0XVHtNZurRdE+Es5zKWdIUoHd6L5mNz440drE0bzCN7jIDicRlE5fcj30rpQ==, tarball: https://artifacts.dell.com:443/artifactory/api/npm/dell-mfe-bit-virtual/@hypernym/nuxt-gsap/-/nuxt-gsap-2.4.3.tgz}
 
   '@ioredis/commands@1.2.0':
     resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
@@ -1487,6 +1493,9 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
+  gsap@3.12.7:
+    resolution: {integrity: sha512-V4GsyVamhmKefvcAKaoy0h6si0xX7ogwBoBSs2CTJwt7luW0oZzC0LhdkyuKV8PJAXr7Yaj8pMjCKD4GJ+eEMg==, tarball: https://artifacts.dell.com:443/artifactory/api/npm/dell-mfe-bit-virtual/gsap/-/gsap-3.12.7.tgz}
+
   gzip-size@7.0.0:
     resolution: {integrity: sha512-O1Ld7Dr+nqPnmGpdhzLmMTQ4vAsD+rHwMm1NLUmoUFFymBOMKxCCrtDxqdBRYXdeEPEi3SyoR4TizJLQrnKBNA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -1719,7 +1728,7 @@ packages:
     engines: {node: '>= 0.6.3'}
 
   lenis@1.1.20:
-    resolution: {integrity: sha512-UE64mlJEN4W8DWP2tfHzPzygk94Q2BhjzeG/YHWoyeMJ2Fd6XziBCNN+IvHwmB4GkmKIYxgr0+TvRYTSAMTMFA==, tarball: https://artifacts.dell.com:443/artifactory/api/npm/dell-mfe-bit-virtual/lenis/-/lenis-1.1.20.tgz}
+    resolution: {integrity: sha512-UE64mlJEN4W8DWP2tfHzPzygk94Q2BhjzeG/YHWoyeMJ2Fd6XziBCNN+IvHwmB4GkmKIYxgr0+TvRYTSAMTMFA==}
     peerDependencies:
       react: '>=17.0.0'
       vue: '>=3.0.0'
@@ -3234,6 +3243,10 @@ snapshots:
   '@esbuild/win32-x64@0.24.2':
     optional: true
 
+  '@hypernym/nuxt-gsap@2.4.3':
+    dependencies:
+      gsap: 3.12.7
+
   '@ioredis/commands@1.2.0': {}
 
   '@isaacs/cliui@8.0.2':
@@ -4593,6 +4606,8 @@ snapshots:
       unicorn-magic: 0.1.0
 
   graceful-fs@4.2.11: {}
+
+  gsap@3.12.7: {}
 
   gzip-size@7.0.0:
     dependencies:
