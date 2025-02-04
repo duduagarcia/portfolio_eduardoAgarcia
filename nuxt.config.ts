@@ -1,13 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   css: ['~/assets/css/main.css'],
-  modules: ['@hypernym/nuxt-gsap', '@vueuse/nuxt'],
+  modules: ['@hypernym/nuxt-gsap', '@vueuse/nuxt','@nuxtjs/seo'],
   gsap: {
     extraPlugins: {
       scrollTrigger: true
     }
+  },
+  site: {
+    indexable: true,
   },
   app: {
     head: {
