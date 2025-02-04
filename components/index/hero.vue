@@ -15,8 +15,8 @@
 <style scoped>
 main{
     /* background-color: antiquewhite; */
-    height: 100vh;
-    max-height: 100vh !important;
+    height: 100dvh;
+    max-height: 100dvh !important;
 
     display: flex;
     flex-direction: column;

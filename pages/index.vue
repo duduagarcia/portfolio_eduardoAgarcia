@@ -6,6 +6,7 @@
     <div>
         <IndexHero/>
         <IndexManifesto/>
+        <Marquee>How i can help you </Marquee>
         <!-- <IndexServices/>
         <IndexWork/>
         <IndexAbout/> -->

@@ -17,8 +17,20 @@ export default defineNuxtConfig({
         {
           rel: 'stylesheet',
           href: 'https://api.fontshare.com/v2/css?f[]=satoshi@400,401,500,501,700&display=swap'
+        },
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "/favicon.ico"
         }
-      ]
+      ],
+      bodyAttrs: {
+        'data-scrolling-started': 'false',
+        'data-scrolling-direction': 'up'
+      },
+      htmlAttrs: {
+        lang: "en",
+      }
     }
   }
 })
