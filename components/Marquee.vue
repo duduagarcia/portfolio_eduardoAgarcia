@@ -108,9 +108,9 @@ onMounted(() => {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   display: flex;
   overflow-x: hidden;
+  padding: 100px;
 }
 
 .marquee-advanced {
