@@ -38,7 +38,7 @@ div{
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 120px 0;
+    padding: 200px 0;
 }
 
 h2{
