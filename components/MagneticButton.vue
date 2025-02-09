@@ -2,19 +2,26 @@
 const { $gsap } = useNuxtApp();
 
 function initMagneticEffect() {
-  const magnets = document.querySelectorAll('[data-magnetic-strength]');
+  const magnets = document.querySelectorAll("[data-magnetic-strength]");
   if (window.innerWidth <= 991) return;
 
   // Mouse move
   function moveMagnet(event) {
     const magnet = event.currentTarget;
     const bounding = magnet.getBoundingClientRect();
-    const strength = parseFloat(magnet.getAttribute('data-magnetic-strength')) || 25; // When no amount defined
-    const innerTarget = magnet.querySelector('[data-magnetic-inner-target]');
-    const innerStrength = parseFloat(magnet.getAttribute('data-magnetic-strength-inner')) || strength;
+    const strength =
+      parseFloat(magnet.getAttribute("data-magnetic-strength")) || 25; // When no amount defined
+    const innerTarget = magnet.querySelector("[data-magnetic-inner-target]");
+    const innerStrength =
+      parseFloat(magnet.getAttribute("data-magnetic-strength-inner")) ||
+      strength;
 
-    const offsetX = ((event.clientX - bounding.left) / magnet.offsetWidth - 0.5) * (strength / 16);
-    const offsetY = ((event.clientY - bounding.top) / magnet.offsetHeight - 0.5) * (strength / 16);
+    const offsetX =
+      ((event.clientX - bounding.left) / magnet.offsetWidth - 0.5) *
+      (strength / 16);
+    const offsetY =
+      ((event.clientY - bounding.top) / magnet.offsetHeight - 0.5) *
+      (strength / 16);
 
     // Outer animation
     $gsap.to(magnet, {
@@ -27,8 +34,12 @@ function initMagneticEffect() {
 
     // Inner animation (only if innerTarget exists)
     if (innerTarget) {
-      const innerOffsetX = ((event.clientX - bounding.left) / magnet.offsetWidth - 0.5) * (innerStrength / 16);
-      const innerOffsetY = ((event.clientY - bounding.top) / magnet.offsetHeight - 0.5) * (innerStrength / 16);
+      const innerOffsetX =
+        ((event.clientX - bounding.left) / magnet.offsetWidth - 0.5) *
+        (innerStrength / 16);
+      const innerOffsetY =
+        ((event.clientY - bounding.top) / magnet.offsetHeight - 0.5) *
+        (innerStrength / 16);
 
       $gsap.to(innerTarget, {
         x: innerOffsetX + "em",
@@ -43,7 +54,7 @@ function initMagneticEffect() {
   // Mouse leave
   function resetMagnet(event) {
     const magnet = event.currentTarget;
-    const innerTarget = magnet.querySelector('[data-magnetic-inner-target]');
+    const innerTarget = magnet.querySelector("[data-magnetic-inner-target]");
 
     // Reset outer magnet
     $gsap.to(magnet, {
@@ -51,7 +62,7 @@ function initMagneticEffect() {
       y: "0em",
       ease: "elastic.out(1, 0.3)",
       duration: 1.6,
-      clearProps: "all"
+      clearProps: "all",
     });
 
     // Reset inner magnet (only if innerTarget exists)
@@ -61,36 +72,40 @@ function initMagneticEffect() {
         y: "0em",
         ease: "elastic.out(1, 0.3)",
         duration: 2,
-        clearProps: "all"
+        clearProps: "all",
       });
     }
   }
 
   // Attach event listeners
-  magnets.forEach(magnet => {
-    magnet.addEventListener('mousemove', moveMagnet);
-    magnet.addEventListener('mouseleave', resetMagnet);
+  magnets.forEach((magnet) => {
+    magnet.addEventListener("mousemove", moveMagnet);
+    magnet.addEventListener("mouseleave", resetMagnet);
   });
 }
 
 onMounted(() => {
-    initMagneticEffect();
-})
-
+  initMagneticEffect();
+});
 </script>
 
 <template>
-    <div class="btn-magnetic">
-        <a href="#" class="btn-magnetic__click" data-magnetic-strength="90" data-magnetic-strength-inner="25">
-            <div class="btn-magnetic__fill"></div>
-            <div data-magnetic-inner-target="" class="btn-magnetic__content">
-                <div class="btn-magnetic__text">
-                    <p class="btn-magnetic__text-p">About me</p>
-                    <p class="btn-magnetic__text-p is--duplicate">About me</p>
-                </div>
-            </div>
-        </a>
-    </div>
+  <div class="btn-magnetic">
+    <a
+      href="#"
+      class="btn-magnetic__click"
+      data-magnetic-strength="90"
+      data-magnetic-strength-inner="25"
+    >
+      <div class="btn-magnetic__fill"></div>
+      <div data-magnetic-inner-target="" class="btn-magnetic__content">
+        <div class="btn-magnetic__text">
+          <p class="btn-magnetic__text-p">About me</p>
+          <p class="btn-magnetic__text-p is--duplicate">About me</p>
+        </div>
+      </div>
+    </a>
+  </div>
 </template>
 
 <style scoped>
@@ -114,11 +129,10 @@ onMounted(() => {
   overflow: hidden;
   text-decoration: none;
   border-radius: 100%;
-
 }
 
 .btn-magnetic__fill {
-background-color: var(--brand_black_hover);
+  background-color: var(--brand_black_hover);
 
   width: 100%;
   height: 100%;
@@ -130,7 +144,7 @@ background-color: var(--brand_black_hover);
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: .75em 2em;
+  padding: 0.75em 2em;
   display: flex;
   position: relative;
   /* background-color: green; */
@@ -143,8 +157,8 @@ background-color: var(--brand_black_hover);
 
 .btn-magnetic__text-p {
   text-align: center;
-    color: var(--brand_white);
-    font-size: 1.2rem;
+  color: var(--brand_white);
+  font-size: 1.2rem;
   margin-bottom: 0;
   position: relative;
 }

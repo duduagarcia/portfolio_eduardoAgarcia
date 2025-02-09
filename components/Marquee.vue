@@ -1,86 +1,117 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted } from "vue";
 const { $gsap, $ScrollTrigger } = useNuxtApp();
 
 function initMarqueeScrollDirection() {
-  document.querySelectorAll('[data-marquee-scroll-direction-targett]').forEach((marquee) => {
-    // Query marquee elements
-    const marqueeContent = marquee.querySelector('[data-marquee-collection-targett]');
-    const marqueeScroll = marquee.querySelector('[data-marquee-scroll-targett]');
-    if (!marqueeContent || !marqueeScroll) return;
+  document
+    .querySelectorAll("[data-marquee-scroll-direction-targett]")
+    .forEach((marquee) => {
+      // Query marquee elements
+      const marqueeContent = marquee.querySelector(
+        "[data-marquee-collection-targett]"
+      );
+      const marqueeScroll = marquee.querySelector(
+        "[data-marquee-scroll-targett]"
+      );
+      if (!marqueeContent || !marqueeScroll) return;
 
-    // Get data attributes
-    const { marqueeSpeedd: speed, marqueeDirectionn: direction, marqueeDuplicatee: duplicate, marqueeScrollSpeedd: scrollSpeed } = marquee.dataset;
+      // Get data attributes
+      const {
+        marqueeSpeedd: speed,
+        marqueeDirectionn: direction,
+        marqueeDuplicatee: duplicate,
+        marqueeScrollSpeedd: scrollSpeed,
+      } = marquee.dataset;
 
-    // Convert data attributes to usable types
-    const marqueeSpeedAttr = parseFloat(speed);
-    const marqueeDirectionAttr = direction === 'right' ? 1 : -1; // 1 for right, -1 for left
-    const duplicateAmount = parseInt(duplicate || 0);
-    const scrollSpeedAttr = parseFloat(scrollSpeed);
-    const speedMultiplier = window.innerWidth < 479 ? 0.25 : window.innerWidth < 991 ? 0.5 : 1;
+      // Convert data attributes to usable types
+      const marqueeSpeedAttr = parseFloat(speed);
+      const marqueeDirectionAttr = direction === "right" ? 1 : -1; // 1 for right, -1 for left
+      const duplicateAmount = parseInt(duplicate || 0);
+      const scrollSpeedAttr = parseFloat(scrollSpeed);
+      const speedMultiplier =
+        window.innerWidth < 479 ? 0.25 : window.innerWidth < 991 ? 0.5 : 1;
 
-    let marqueeSpeed = marqueeSpeedAttr * (marqueeContent.offsetWidth / window.innerWidth) * speedMultiplier;
+      let marqueeSpeed =
+        marqueeSpeedAttr *
+        (marqueeContent.offsetWidth / window.innerWidth) *
+        speedMultiplier;
 
-    // Precompute styles for the scroll container
-    marqueeScroll.style.marginLeft = `${scrollSpeedAttr * -1}%`;
-    marqueeScroll.style.width = `${(scrollSpeedAttr * 2) + 100}%`;
+      // Precompute styles for the scroll container
+      marqueeScroll.style.marginLeft = `${scrollSpeedAttr * -1}%`;
+      marqueeScroll.style.width = `${scrollSpeedAttr * 2 + 100}%`;
 
-    // Duplicate marquee content
-    if (duplicateAmount > 0) {
-      const fragment = document.createDocumentFragment();
-      for (let i = 0; i < duplicateAmount; i++) {
-        fragment.appendChild(marqueeContent.cloneNode(true));
+      // Duplicate marquee content
+      if (duplicateAmount > 0) {
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < duplicateAmount; i++) {
+          fragment.appendChild(marqueeContent.cloneNode(true));
+        }
+        marqueeScroll.appendChild(fragment);
       }
-      marqueeScroll.appendChild(fragment);
-    }
 
-    // GSAP animation for marquee content
-    const marqueeItems = marquee.querySelectorAll('[data-marquee-collection-targett]');
-    const animation = $gsap.to(marqueeItems, {
-      xPercent: -100, // Move completely out of view
-      repeat: -1,
-      duration: marqueeSpeed,
-      ease: 'linear'
-    }).totalProgress(0.5);
+      // GSAP animation for marquee content
+      const marqueeItems = marquee.querySelectorAll(
+        "[data-marquee-collection-targett]"
+      );
+      const animation = $gsap
+        .to(marqueeItems, {
+          xPercent: -100, // Move completely out of view
+          repeat: -1,
+          duration: marqueeSpeed,
+          ease: "linear",
+        })
+        .totalProgress(0.5);
 
-    // Initialize marquee in the correct direction
-    $gsap.set(marqueeItems, { xPercent: marqueeDirectionAttr === 1 ? 100 : -100 });
-    animation.timeScale(marqueeDirectionAttr); // Set correct direction
-    animation.play(); // Start animation immediately
+      // Initialize marquee in the correct direction
+      $gsap.set(marqueeItems, {
+        xPercent: marqueeDirectionAttr === 1 ? 100 : -100,
+      });
+      animation.timeScale(marqueeDirectionAttr); // Set correct direction
+      animation.play(); // Start animation immediately
 
-    // Set initial marquee status
-    marquee.setAttribute('data-marquee-statuss', 'normal');
+      // Set initial marquee status
+      marquee.setAttribute("data-marquee-statuss", "normal");
 
-    // ScrollTrigger logic for direction inversion
-    $ScrollTrigger.create({
-      trigger: marquee,
-      start: 'top bottom',
-      end: 'bottom top',
-      onUpdate: (self) => {
-        const isInverted = self.direction === 1; // Scrolling down
-        const currentDirection = isInverted ? -marqueeDirectionAttr : marqueeDirectionAttr;
-
-        // Update animation direction and marquee status
-        animation.timeScale(currentDirection);
-        marquee.setAttribute('data-marquee-statuss', isInverted ? 'normal' : 'inverted');
-      }
-    });
-
-    // Extra speed effect on scroll
-    const tl = $gsap.timeline({
-      scrollTrigger: {
+      // ScrollTrigger logic for direction inversion
+      $ScrollTrigger.create({
         trigger: marquee,
-        start: '0% 100%',
-        end: '100% 0%',
-        scrub: 0
-      }
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate: (self) => {
+          const isInverted = self.direction === 1; // Scrolling down
+          const currentDirection = isInverted
+            ? -marqueeDirectionAttr
+            : marqueeDirectionAttr;
+
+          // Update animation direction and marquee status
+          animation.timeScale(currentDirection);
+          marquee.setAttribute(
+            "data-marquee-statuss",
+            isInverted ? "normal" : "inverted"
+          );
+        },
+      });
+
+      // Extra speed effect on scroll
+      const tl = $gsap.timeline({
+        scrollTrigger: {
+          trigger: marquee,
+          start: "0% 100%",
+          end: "100% 0%",
+          scrub: 0,
+        },
+      });
+
+      const scrollStart =
+        marqueeDirectionAttr === -1 ? scrollSpeedAttr : -scrollSpeedAttr;
+      const scrollEnd = -scrollStart;
+
+      tl.fromTo(
+        marqueeScroll,
+        { x: `${scrollStart}vw` },
+        { x: `${scrollEnd}vw`, ease: "none" }
+      );
     });
-
-    const scrollStart = marqueeDirectionAttr === -1 ? scrollSpeedAttr : -scrollSpeedAttr;
-    const scrollEnd = -scrollStart;
-
-    tl.fromTo(marqueeScroll, { x: `${scrollStart}vw` }, { x: `${scrollEnd}vw`, ease: 'none' });
-  });
 }
 
 onMounted(() => {
@@ -91,16 +122,43 @@ onMounted(() => {
 <template>
   <section class="section-resource">
     <!-- Based on font size -->
-    <div data-marquee-duplicatee="2" data-marquee-scroll-direction-targett="" data-marquee-directionn="left" data-marquee-statuss="normal" data-marquee-speedd="15" data-marquee-scroll-speedd="10" class="marquee-advanced">
+    <div
+      data-marquee-duplicatee="2"
+      data-marquee-scroll-direction-targett=""
+      data-marquee-directionn="left"
+      data-marquee-statuss="normal"
+      data-marquee-speedd="15"
+      data-marquee-scroll-speedd="10"
+      class="marquee-advanced"
+    >
       <div data-marquee-scroll-targett="" class="marquee-advanced__scroll">
-        <div data-marquee-collection-targett="" class="marquee-advanced__collection">
+        <div
+          data-marquee-collection-targett=""
+          class="marquee-advanced__collection"
+        >
           <div class="marquee-advanced__item">
             <p class="marquee__advanced__p">
-              <slot/> 
+              <slot />
             </p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 125 95" fill="none" class="marquee__advanced__arrow-svg">
-                <path d="M73.6748 89.7824L116.207 47.2501L73.6748 4.71783" stroke="currentColor" stroke-width="12.1521" stroke-miterlimit="10"></path>
-                <path d="M116.207 47.25L0.762451 47.25" stroke="currentColor" stroke-width="12.1521" stroke-miterlimit="10"></path>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="100%"
+              viewBox="0 0 125 95"
+              fill="none"
+              class="marquee__advanced__arrow-svg"
+            >
+              <path
+                d="M73.6748 89.7824L116.207 47.2501L73.6748 4.71783"
+                stroke="currentColor"
+                stroke-width="12.1521"
+                stroke-miterlimit="10"
+              ></path>
+              <path
+                d="M116.207 47.25L0.762451 47.25"
+                stroke="currentColor"
+                stroke-width="12.1521"
+                stroke-miterlimit="10"
+              ></path>
             </svg>
           </div>
         </div>
@@ -154,8 +212,8 @@ onMounted(() => {
 .marquee__advanced__arrow-svg {
   color: var(--brand_green);
   width: 1em;
-  margin-right: .25em;
-  margin-left: .25em;
+  margin-right: 0.25em;
+  margin-left: 0.25em;
   position: relative;
 }
 </style>
