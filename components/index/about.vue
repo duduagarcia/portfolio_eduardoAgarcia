@@ -3,7 +3,7 @@ import Ukiyo from "ukiyojs";
 
 onMounted(() => {
     const profile_pic = document.querySelectorAll(".profile_pic");
-    new Ukiyo(images, {
+    new Ukiyo(profile_pic, {
         scale: 1.1, // 1~2 is recommended
         speed: 2, // 1~2 is recommended
         willChange: true,
