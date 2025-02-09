@@ -20,7 +20,7 @@ onMounted(() => {
         <MagneticButton class="btn_about" />
         <div class="image_wrapper">
           <img
-            src="~/assets/img/profile_pic_full.webp"
+            src="~/assets/img/profile_pic_full_optimized.webp"
             alt=""
             class="profile_pic"
           />
