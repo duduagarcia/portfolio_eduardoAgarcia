@@ -1,8 +1,15 @@
 <script setup>
-const { $gsap } = useNuxtApp();
+import Ukiyo from "ukiyojs";
 
 onMounted(() => {
-
+    const profile_pic = document.querySelectorAll(".profile_pic");
+    new Ukiyo(images, {
+        scale: 1.1, // 1~2 is recommended
+        speed: 2, // 1~2 is recommended
+        willChange: true,
+        wrapperClass: "ukiyo-wrapper",
+        externalRAF: false
+    })
 })
 </script>
 
@@ -10,8 +17,9 @@ onMounted(() => {
     <div class="container is--medium wrapper">
         <div class="col1">
             <div class="image_container">
+                <MagneticButton class="btn_about"/>
                 <div class="image_wrapper">
-                    <img src="~/assets/img/profile_pic_full.webp" alt="">
+                    <img src="~/assets/img/profile_pic_full.webp" alt="" class="profile_pic">
                 </div>
             </div>
         </div>
@@ -21,6 +29,7 @@ onMounted(() => {
                 <br>
                 <br>
                 <p>I’m rarely satisfied with my own work, but that ends up being what sets me apart. I always belived that success isn’t measured by "does it work?" but rather "is it a joy to use?</p>
+                <br>
             </div>
         </div>
     </div>
@@ -42,7 +51,14 @@ onMounted(() => {
 }
 
 .col1 .image_container{
+    position: relative;
+}
 
+.col1 .image_container .btn_about{
+    position: absolute;
+    z-index: 100;
+    right: -100px;
+    top: 50px;
 }
 
 .col1 .image_container .image_wrapper{
@@ -84,6 +100,12 @@ onMounted(() => {
 @media screen and (max-width: 1200px){
     .wrapper{
         gap: 100px;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .btn_about{
+        display: none;
     }
 }
 
