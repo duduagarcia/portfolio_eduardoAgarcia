@@ -3,14 +3,14 @@ import { onMounted } from 'vue';
 const { $gsap, $ScrollTrigger } = useNuxtApp();
 
 function initMarqueeScrollDirection() {
-  document.querySelectorAll('[data-marquee-scroll-direction-target]').forEach((marquee) => {
+  document.querySelectorAll('[data-marquee-scroll-direction-targett]').forEach((marquee) => {
     // Query marquee elements
-    const marqueeContent = marquee.querySelector('[data-marquee-collection-target]');
-    const marqueeScroll = marquee.querySelector('[data-marquee-scroll-target]');
+    const marqueeContent = marquee.querySelector('[data-marquee-collection-targett]');
+    const marqueeScroll = marquee.querySelector('[data-marquee-scroll-targett]');
     if (!marqueeContent || !marqueeScroll) return;
 
     // Get data attributes
-    const { marqueeSpeed: speed, marqueeDirection: direction, marqueeDuplicate: duplicate, marqueeScrollSpeed: scrollSpeed } = marquee.dataset;
+    const { marqueeSpeedd: speed, marqueeDirectionn: direction, marqueeDuplicatee: duplicate, marqueeScrollSpeedd: scrollSpeed } = marquee.dataset;
 
     // Convert data attributes to usable types
     const marqueeSpeedAttr = parseFloat(speed);
@@ -35,7 +35,7 @@ function initMarqueeScrollDirection() {
     }
 
     // GSAP animation for marquee content
-    const marqueeItems = marquee.querySelectorAll('[data-marquee-collection-target]');
+    const marqueeItems = marquee.querySelectorAll('[data-marquee-collection-targett]');
     const animation = $gsap.to(marqueeItems, {
       xPercent: -100, // Move completely out of view
       repeat: -1,
@@ -49,7 +49,7 @@ function initMarqueeScrollDirection() {
     animation.play(); // Start animation immediately
 
     // Set initial marquee status
-    marquee.setAttribute('data-marquee-status', 'normal');
+    marquee.setAttribute('data-marquee-statuss', 'normal');
 
     // ScrollTrigger logic for direction inversion
     $ScrollTrigger.create({
@@ -62,7 +62,7 @@ function initMarqueeScrollDirection() {
 
         // Update animation direction and marquee status
         animation.timeScale(currentDirection);
-        marquee.setAttribute('data-marquee-status', isInverted ? 'normal' : 'inverted');
+        marquee.setAttribute('data-marquee-statuss', isInverted ? 'normal' : 'inverted');
       }
     });
 
@@ -91,11 +91,17 @@ onMounted(() => {
 <template>
   <section class="section-resource">
     <!-- Based on font size -->
-    <div data-marquee-duplicate="2" data-marquee-scroll-direction-target="" data-marquee-direction="left" data-marquee-status="normal" data-marquee-speed="15" data-marquee-scroll-speed="10" class="marquee-advanced">
-      <div data-marquee-scroll-target="" class="marquee-advanced__scroll">
-        <div data-marquee-collection-target="" class="marquee-advanced__collection">
+    <div data-marquee-duplicatee="2" data-marquee-scroll-direction-targett="" data-marquee-directionn="left" data-marquee-statuss="normal" data-marquee-speedd="15" data-marquee-scroll-speedd="10" class="marquee-advanced">
+      <div data-marquee-scroll-targett="" class="marquee-advanced__scroll">
+        <div data-marquee-collection-targett="" class="marquee-advanced__collection">
           <div class="marquee-advanced__item">
-            <p class="marquee__advanced__p"><slot/></p>
+            <p class="marquee__advanced__p">
+              <slot/> 
+            </p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 125 95" fill="none" class="marquee__advanced__arrow-svg">
+                <path d="M73.6748 89.7824L116.207 47.2501L73.6748 4.71783" stroke="currentColor" stroke-width="12.1521" stroke-miterlimit="10"></path>
+                <path d="M116.207 47.25L0.762451 47.25" stroke="currentColor" stroke-width="12.1521" stroke-miterlimit="10"></path>
+            </svg>
           </div>
         </div>
       </div>
@@ -142,37 +148,14 @@ onMounted(() => {
 .marquee__advanced__p {
   white-space: nowrap;
   margin-bottom: 0;
-  margin-right: 1em;
   font-size: 1em;
 }
 
 .marquee__advanced__arrow-svg {
-  color: #ff4c24;
+  color: var(--brand_green);
   width: 1em;
   margin-right: .25em;
+  margin-left: .25em;
   position: relative;
-}
-
-.marquee-advanced__item-width {
-  background-color: #131313;
-  border-radius: 1vw;
-  justify-content: center;
-  align-items: center;
-  width: 18vw;
-  height: 18vw;
-  margin: 1vw;
-  display: flex;
-}
-
-/* Optional: Rotating arrow left/right based on Scroll Direction */
-.marquee__advanced__arrow-svg,
-[data-marquee-direction="right"][data-marquee-status="inverted"] .marquee__advanced__arrow-svg {
-  transition: 0.5s cubic-bezier(0.625, 0.05, 0, 1);
-  transform: rotate(-180deg);
-}
-
-[data-marquee-status="inverted"] .marquee__advanced__arrow-svg,
-[data-marquee-direction="right"][data-marquee-status="normal"] .marquee__advanced__arrow-svg {
-  transform: rotate(-359.999deg);
 }
 </style>

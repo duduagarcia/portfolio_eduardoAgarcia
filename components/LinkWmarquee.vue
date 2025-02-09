@@ -64,7 +64,7 @@ onMounted(() => {
 <template>
     <a href="www.youtube.com">
         <div class="container is--full link-wrapper">
-            <h2 class="link-wrapper-p">{{ props.app }}</h2>
+            <h2 class="link-wrapper-p title container is--medium">{{ props.app }}</h2>
             <h2 class="link-wrapper-p is--duplicate">
                 <div data-marquee-duplicate="10" data-marquee-scroll-direction-target="" data-marquee-direction="left" data-marquee-status="normal" data-marquee-speed="15" data-marquee-scroll-speed="10" class="marquee-advanced" :id="props.app">
                     <div data-marquee-scroll-target="" class="marquee-advanced__scroll">
@@ -95,32 +95,26 @@ a{
     overflow: hidden;
     color: var(--brand_dark_gray);
     height: max-content;
-    padding-left: 0;
-    padding-right: 0;
 }
 
 .link-wrapper-p {
-    font-size: 2.5em;
-    font-weight: 500;
-    line-height: 1.1;
     margin-bottom: 0;
     position: relative;
     padding: 2.5rem 0;
-    max-height: 130px;
-    padding-left: var(--container-padding);
-    padding-right: var(--container-padding);
 
+
+    font-size: 1.75em;
+        font-weight: 500;
+        line-height: 1.15;
 }
 
 .link-wrapper-p.is--duplicate {
     width: 100%;
     position: absolute;
     z-index: 10;
+    left: 0;
     top: 100%;
     background: var(--brand_black_hover);
-    padding-left: 0;
-    padding-right: 0;
-    padding: 0;
 }
 
 .dot{
@@ -154,7 +148,6 @@ a{
     width: 100vw;
     position: relative;
     overflow: hidden;
-    padding: 2.5rem 0;
     max-height: 130px;
 }
 
@@ -182,9 +175,18 @@ a{
 .marquee__advanced__p {
     white-space: nowrap;
     margin-bottom: 0;
-    font-size: 2.5em;
-    font-weight: 500;
-    line-height: 1.1;
-    margin-bottom: 0;
+        font-size: 1.75em;
+        font-weight: 500;
+        line-height: 1.15;
+}
+
+@media screen and (max-width: 767px) {
+    .link-wrapper-p, .marquee__advanced__p{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.75em;
+        font-weight: 500;
+        line-height: 1.15;
+    }
 }
 </style>
