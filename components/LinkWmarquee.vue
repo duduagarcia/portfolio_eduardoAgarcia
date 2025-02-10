@@ -10,6 +10,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  link: {
+    type: String,
+    required: true,
+  },
 });
 
 function initMarquee() {
@@ -78,7 +82,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <a href="www.youtube.com">
+  <a :href="props.link" rel="noopener noreferrer" target="_blank">
     <div class="container is--full link-wrapper">
       <h2 class="link-wrapper-p title container is--medium">{{ props.app }}</h2>
       <h2 class="link-wrapper-p is--duplicate">
