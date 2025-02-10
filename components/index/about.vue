@@ -48,6 +48,7 @@ onMounted(() => {
   min-height: 100vh;
   display: flex;
   gap: 200px;
+  margin-top: 400px;
 }
 
 .col1 {

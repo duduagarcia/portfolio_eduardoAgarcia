@@ -4,7 +4,7 @@
     <IndexHero />
     <IndexManifesto />
     <IndexServices />
-    <!-- <IndexWork/> -->
+    <IndexWork />
     <IndexAbout />
     <IndexLinks />
   </div>
